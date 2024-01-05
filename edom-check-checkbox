@@ -1,0 +1,30 @@
+// ==UserScript==
+// @name         EDOM Checkbox Auto Check
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  Otomatis mencentang checkbox pada halaman EDOM
+// @author       You
+// @match        https://edom.ui.ac.id/edom-siakng.php
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    function checkCheckbox(prefix, start, end) {
+        for (var i = start; i <= end; i++) {
+            var checkboxElement = document.querySelector('input[name^="' + prefix + '[' + i + ']"][value="6"]');
+
+            if (checkboxElement) {
+                checkboxElement.checked = true;
+            } else {
+                console.log('Elemen checkbox dengan indeks ' + i + ' tidak ditemukan.');
+            }
+        }
+    }
+
+    // Dosen 1
+    checkCheckbox('nilai[197406152008122002]', 458, 473);
+    // Dosen 2
+    checkCheckbox('nilai[022003008]', 458, 473);
+
+})();
